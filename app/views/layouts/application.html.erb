@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pipe</title>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "LAB" %>
+  <script>
+    $LAB.setGlobalDefaults({AlwaysPreserveOrder:true});
+    $LAB.queueScript('<%= javascript_path "jquery" %>');
+  </script>
+  <%= stylesheet_link_tag "application" %>
+</head>
+<body onload="$LAB.runQueue()">
+
+<%= yield %>
+
+</body>
+<script>$LAB.queueScript(<%= (Rails.env != 'development') ? ["'", javascript_path("application"), "'"].join : javascript_include_lab("application") %>);</script>
+</html>
